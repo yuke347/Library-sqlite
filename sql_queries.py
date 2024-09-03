@@ -4,7 +4,7 @@ import sqlite3
 import datetime
 #check the name of the PC
 def get_db():
-    db = sqlite3.connect("instance/db_inst.sqlite")
+    db = sqlite3.connect("C:/Users/User/OneDrive/Dokumenty/programovanie/python/learning/PYQT6_sqlite_Library/instance/db_inst.sqlite")
     return db
 def init_db():
 

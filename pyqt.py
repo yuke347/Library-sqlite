@@ -1,9 +1,9 @@
 from PyQt6.QtWidgets import QApplication, QLabel,QMainWindow,QVBoxLayout,QWidget,QPushButton,QLineEdit,QComboBox,QListWidget,QMessageBox
 from PyQt6.QtGui import QFont
 from PyQt6.QtCore import QEventLoop,QTimer,Qt
-from sql_exe import db
 
-from sql_exe import list_books_f,returnBookID_f,returnReturnedBooks_f
+
+from sql_exe import list_books_f,returnBookID_f,returnReturnedBooks_f,db
 
 class MainWindow(QWidget):
     def __init__(self):
