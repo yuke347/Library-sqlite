@@ -105,6 +105,7 @@ class Login(MainWindow):
         except ValueError:
             self.label1.setText("Did not select a book or Invalid amount input.")
 
+
     def clickSignIn(self):
         try:
             if self.checkEmptines(self.inputLine1.text().strip(),self.inputLine2.text().strip(),self.inputLine3.text().strip(),self.inputLine4.text().strip(),self.inputLine5.text().strip()) == False:
@@ -181,9 +182,13 @@ class Login(MainWindow):
                 except TypeError:
                      pass
     def set_book_f(self,amount,id): 
+            try:
                 db.execute(set_book_Q,(amount,id))
                 db.commit()
                 self.label1.setText("Amount was set")  
+            except sqlite3.IntegrityError:
+                self.label1.setText("Only positive values")
+                self.pause(1000,1)
     def insert_users_f(self,username,first_name,surname,password,DOB):
         try:
             db.execute(insert_users_Q,(username,first_name,surname,password,datetime.datetime.strptime((DOB),r"%d.%m.%Y")))
