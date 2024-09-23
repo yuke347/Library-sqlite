@@ -86,6 +86,11 @@ class MainWindow(QWidget):
                 self.layout.itemAt(i).widget().setParent(None)
         except:
             pass
+        
+    def clearJinput(self,*args):
+        for item in args:
+            item.setText("")
+
     def set_layout(self,*args):
         for layout in args:
             self.layout.addWidget(layout)
@@ -232,7 +237,7 @@ class MainWindow(QWidget):
         self.clear_layout()
         self.inputLine1.setPlaceholderText("Book name")
         self.inputLine2.setPlaceholderText("Author")
-        self.inputLine3.setPlaceholderText("Published")
+        self.inputLine3.setPlaceholderText("Published dd.mm.YYYY")
         self.inputLine4.setPlaceholderText("Genre")
 
         

@@ -165,6 +165,7 @@ class Login(MainWindow):
                 # db.execute(update_amount_Q,(book_name,))
                     db.commit()
                     self.label1.setText("Book inserted!")
+                    self.clearJinput(self.inputLine1,self.inputLine2,self.inputLine3,self.inputLine4)
                 except ValueError:
                     self.label1.setText("Wrong date format, try again")
                     self.pause(1000,1)
@@ -181,11 +182,13 @@ class Login(MainWindow):
                     pass
                 except TypeError:
                      pass
+                
     def set_book_f(self,amount,id): 
             try:
                 db.execute(set_book_Q,(amount,id))
                 db.commit()
                 self.label1.setText("Amount was set")  
+                self.clearJinput(self.inputLine1)
             except sqlite3.IntegrityError:
                 self.label1.setText("Only positive values")
                 self.pause(1000,1)
@@ -193,9 +196,10 @@ class Login(MainWindow):
         try:
             db.execute(insert_users_Q,(username,first_name,surname,password,datetime.datetime.strptime((DOB),r"%d.%m.%Y")))
             db.commit()
+            self.clearJinput(self.inputLine1,self.inputLine2,self.inputLine3,self.inputLine4,self.inputLine5)
             self.label1.setText("Successfull sign in!")
             self.pause(1000,1)
-            self.main_page()
+            
         except sqlite3.IntegrityError:
             self.label1.setText("Username already in use")
             self.pause(1000,1)
