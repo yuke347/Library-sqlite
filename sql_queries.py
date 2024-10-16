@@ -4,7 +4,7 @@ import sqlite3
 import datetime
 #check the name of the PC
 def get_db():
-    db = sqlite3.connect("instance/db_inst.sqlite")
+    db = sqlite3.connect("../instance/db_inst.sqlite")
     return db
 def init_db():
 
@@ -82,7 +82,7 @@ WHERE ctid IN (
 )"""
 return_book_Q = "update borrowings set return_date = current_date where id=? and book_id = ? and username_id= ?"
 set_book_Q = "update books set amount = ? where id = ?"
-removeUser = "delete from users where UserName = ?"
+removeUser = "delete from users where UserName = ? and UserName not in(select users.UserName from users inner join borrowings on borrowings.username_id = users.ID where users.UserName = 'dusan' and borrowings.return_date is NULL) returning UserName"
 
 
 

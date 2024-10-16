@@ -10,7 +10,7 @@ class ConReturnNo(Exception):
      pass
 
 class Login(MainWindow):
-    
+       
     def __init__(self):
         super().__init__()
         create_tables(CT)
@@ -119,10 +119,14 @@ class Login(MainWindow):
     def removeU(self):
         print(self.comboBox1.currentItem().text())
         try:
-            db.execute(removeUser,(self.comboBox1.currentItem().text(),))
+            if db.execute(removeUser,(self.comboBox1.currentItem().text(),)).fetchone() == None:
+                raise returnIsNone
             db.commit()
         except AttributeError:
             self.label1.setText("Select a User") 
+        except returnIsNone:
+            self.label1.setText("The user has a book still borrowed")
+            self.pause(2000,1)
         users = db.execute("select UserName from users").fetchall()
         self.comboBox1.clear() 
         for user in users:
