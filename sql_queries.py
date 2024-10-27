@@ -4,13 +4,14 @@ import sqlite3
 import datetime
 #check the name of the PC
 def get_db():
-    db = sqlite3.connect("../instance/db_inst.sqlite")
+    db = sqlite3.connect("../../instance/db_inst.sqlite")
     return db
 def init_db():
 
     db = get_db()
     with open("init_db/init_tables.sql") as f:
         db.executescript(f.read())
+
 
 #tables creation
 CT =["""create table if not exists books(

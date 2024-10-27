@@ -23,11 +23,13 @@ class Login(MainWindow):
 
     def clickLogin(self):
         self.lgn = login_f(self.inputLine1.text(),self.inputLine2.text())
+
         if self.lgn != None and self.lgn[6] == 1:
             self.adminPage()
         elif self.lgn != None:
             self.login_page()
         else:
+
             self.label1.setText("Invalid username or password, try again!")
             self.layout.addWidget(self.label1)
             self.setLayout(self.layout)
@@ -127,6 +129,9 @@ class Login(MainWindow):
         except returnIsNone:
             self.label1.setText("The user has a book still borrowed")
             self.pause(2000,1)
+        except sqlite3.IntegrityError:
+            self.label1.setText("Cannot delete the admin")
+            self.pause(2000,1)     
         users = db.execute("select UserName from users").fetchall()
         self.comboBox1.clear() 
         for user in users:

@@ -8,6 +8,7 @@ from sql_exe import list_books_f,returnBookID_f,returnReturnedBooks_f,db
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
+        self.setFixedSize(500,250)
         self.setWindowTitle("Library app")
         self.listB = []
         self.loop = QEventLoop()
@@ -106,6 +107,7 @@ class MainWindow(QWidget):
         self.button3.clicked.connect(self.exit)
 
         self.label2.setText("Welcome to Library 'DS'")
+        self.label2.setAlignment(Qt.AlignmentFlag.AlignHCenter)
 
         self.set_layout(self.label2,self.button1,self.button2,self.button3)
         font = self.label2.font()
